@@ -1,6 +1,8 @@
+import os
 from os import listdir
 from os.path import isfile, join
-onlyfiles = [f for f in listdir("/Users/mashrafihaider/PycharmProjects/Maths") if isfile(join("/Users/mashrafihaider/PycharmProjects/Maths", f))]
+path=os.path.dirname(os.path.abspath(__file__))
+onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
 
 print(onlyfiles)
 
@@ -24,6 +26,7 @@ for files in onlyfiles:
         f.write('\t'+'\t'+str(parameter[i])+" = self.P["+str(i)+"].ref\n")
         str1=str1+str(parameter[i])+','
     str1=str1+str(parameter[-1])
+    f.write('\t' + '\t' + str(parameter[len(parameter)-1]) + " = self.P[" + str(len(parameter)-1) + "].ref\n")
     f.write('\t\t'+re+" = "+function+'.'+function+'('+str1+')\n')
     f.write('\t\t'+'return '+'Object('+re+')')
 
